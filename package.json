@@ -4,7 +4,7 @@
   "description": "React version of my Gifinder project",
   "main": "server.js",
   "scripts": {
-    "start": "watchify src/main.jsx -v -t [babelify --presets [ react ] ] -o public/js/main.js",
+    "build": "watchify src/main.jsx -v -t [babelify --presets [ react ] ] -o public/js/main.js",
     "watch": "gulp",
     "server": "nodemon server/server.js"
   },
