@@ -1,6 +1,6 @@
 //Dependencies
 const React = require('react');
-const GifsActions = require('../../../reflux/Gifs/GifsActions.jsx');
+const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
 

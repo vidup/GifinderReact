@@ -1,7 +1,8 @@
 //Dependencies
 const React = require('react');
 const Reflux = require('reflux');
-const GifsStore = require('../../reflux/Gifs/GifsStore.jsx');
+const GifsStore = require('../../../reflux/Gifs/GifsStore.jsx');
+const GifsActions = require('../../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
 const Gif = require('./Gif.jsx');
@@ -15,10 +16,9 @@ let GifList = React.createClass({
     return {gifs : []}
   },
   onGifsChange : function(event, data){
-    if(event == "Gifs"){
-      console.log(data);
+    if(event == "showGifs"+this.props.listID){
       this.setState({gifs : data}, function(err){
-        console.log("Gifs list updated !");
+        console.log("Gifs showed");
       });
     }
   },
@@ -33,14 +33,16 @@ let GifList = React.createClass({
     }
 
     let listStyle = {
-      width : "100%",
+      width : "25%",
       height : "auto",
-      margin : "auto"
+      margin : "auto",
+      float : "left",
+      display : "block"
     }
 
     return (
       <div style = {listStyle}>
-        {this.state.gifs.map(generateGif)}
+        {this.props.gifs.map(generateGif)}
       </div>
     );
   }

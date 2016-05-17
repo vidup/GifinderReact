@@ -21878,7 +21878,74 @@ process.umask = function() { return 0; };
 },{}],184:[function(require,module,exports){
 //Dependencies
 const React = require('react');
-const GifsActions = require('../../../reflux/Gifs/GifsActions.jsx');
+const Reflux = require('reflux');
+const GifsStore = require('../../reflux/Gifs/GifsStore.jsx');
+
+//Sub-components
+let GifList = require('./Gif/GifList.jsx');
+let SearchForm = require('./Forms/SearchForm.jsx');
+
+//Component
+let App = React.createClass({
+  displayName: 'App',
+
+  mixins: [Reflux.listenTo(GifsStore, "onGifsChange")],
+  getInitialState: function () {
+    return { gifs: [] };
+  },
+  onGifsChange: function (event, data) {
+    if (event == "showGifs") {
+      this.setState({ gifs: data }, function () {});
+    }
+  },
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(SearchForm, null),
+      React.createElement(GifList, { listID: '1', gifs: this.state.gifs.slice(0, 4) }),
+      React.createElement(GifList, { listID: '2', gifs: this.state.gifs.slice(5, 9) }),
+      React.createElement(GifList, { listID: '3', gifs: this.state.gifs.slice(10, 14) }),
+      React.createElement(GifList, { listID: '4', gifs: this.state.gifs.slice(15, 19) })
+    );
+  }
+});
+
+module.exports = App;
+
+},{"../../reflux/Gifs/GifsStore.jsx":195,"./Forms/SearchForm.jsx":187,"./Gif/GifList.jsx":189,"react":157,"reflux":174}],185:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
+
+//Sub-components
+
+//Component
+let Submit = React.createClass({
+  displayName: 'Submit',
+
+  render: function () {
+    const InputStyle = {
+      width: "25%",
+      height: "50px",
+      lineHeight: "50px",
+      margin: "auto",
+      display: "block"
+    };
+    return React.createElement('input', {
+      type: 'submit',
+      style: InputStyle,
+      value: 'Submit'
+    });
+  }
+});
+
+module.exports = Submit;
+
+},{"../../../../reflux/Gifs/GifsActions.jsx":194,"react":157}],186:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
 
@@ -21910,43 +21977,94 @@ let Input = React.createClass({
 
 module.exports = Input;
 
-},{"../../../reflux/Gifs/GifsActions.jsx":188,"react":157}],185:[function(require,module,exports){
+},{"../../../../reflux/Gifs/GifsActions.jsx":194,"react":157}],187:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+const GifsActions = require('../../../reflux/Gifs/GifsActions.jsx');
+
+//Sub-components
+let Submit = require('./Buttons/Submit.jsx');
+let SearchInput = require('./Inputs/SearchInput.jsx');
+
+//Component
+let SearchForm = React.createClass({
+  displayName: 'SearchForm',
+
+  onSubmit: function (e) {
+    e.preventDefault();
+    this.setState({ value: e.target.value }, function () {
+      GifsActions.showGifs();
+    });
+  },
+  render: function () {
+    return React.createElement(
+      'form',
+      { onSubmit: this.onSubmit },
+      React.createElement(SearchInput, { type: 'text', placeholder: 'Search for Gifs' }),
+      React.createElement(Submit, null)
+    );
+  }
+});
+
+module.exports = SearchForm;
+
+},{"../../../reflux/Gifs/GifsActions.jsx":194,"./Buttons/Submit.jsx":185,"./Inputs/SearchInput.jsx":186,"react":157}],188:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
 //Sub-components
+let GifOverlay = require('./GifOverlay.jsx');
 
 //Component
 let Gif = React.createClass({
-  displayName: "Gif",
+  displayName: 'Gif',
 
   getInitialState: function () {
-    return { url: "" };
+    return { url: "", hovered: false };
+  },
+  onMouseEnter: function () {
+    this.setState({ hovered: true }); // Set the state to hovered
+    console.log("enter");
+  },
+  onMouseLeave: function () {
+    this.setState({ hovered: false }); // Set the state to not hovered
+    console.log("leave");
   },
   render: function () {
     let GifStyle = {
-      width: "25%",
+      width: "100%",
       display: "block",
       margin: 0,
       float: "left",
       height: "auto" || this.props.height
     };
 
+    let store = this;
+
+    let overlayStatus = function () {
+      if (store.state.hovered) {
+        return "block";
+      } else {
+        return "none";
+      }
+    };
+
     return React.createElement(
-      "div",
+      'div',
       null,
-      React.createElement("img", { src: this.props.src, style: GifStyle })
+      React.createElement('img', { src: this.props.src, style: GifStyle })
     );
   }
 });
 
 module.exports = Gif;
 
-},{"react":157}],186:[function(require,module,exports){
+},{"./GifOverlay.jsx":190,"react":157}],189:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const Reflux = require('reflux');
-const GifsStore = require('../../reflux/Gifs/GifsStore.jsx');
+const GifsStore = require('../../../reflux/Gifs/GifsStore.jsx');
+const GifsActions = require('../../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
 const Gif = require('./Gif.jsx');
@@ -21960,10 +22078,9 @@ let GifList = React.createClass({
     return { gifs: [] };
   },
   onGifsChange: function (event, data) {
-    if (event == "Gifs") {
-      console.log(data);
+    if (event == "showGifs" + this.props.listID) {
       this.setState({ gifs: data }, function (err) {
-        console.log("Gifs list updated !");
+        console.log("Gifs showed");
       });
     }
   },
@@ -21976,22 +22093,127 @@ let GifList = React.createClass({
     };
 
     let listStyle = {
-      width: "100%",
+      width: "25%",
       height: "auto",
-      margin: "auto"
+      margin: "auto",
+      float: "left",
+      display: "block"
     };
 
     return React.createElement(
       'div',
       { style: listStyle },
-      this.state.gifs.map(generateGif)
+      this.props.gifs.map(generateGif)
     );
   }
 });
 
 module.exports = GifList;
 
-},{"../../reflux/Gifs/GifsStore.jsx":189,"./Gif.jsx":185,"react":157,"reflux":174}],187:[function(require,module,exports){
+},{"../../../reflux/Gifs/GifsStore.jsx":195,"./Gif.jsx":188,"react":157,"reflux":174}],190:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+
+//Sub-components
+
+//Component
+let GifOverlay = React.createClass({
+  displayName: "GifOverlay",
+
+  getInitialState: function () {
+    return { url: "" };
+  },
+  render: function () {
+    let GifOverlayStyle = {
+      width: "100%",
+      height: "100%",
+      position: "relative",
+      top: 0,
+      display: this.props.display,
+      margin: 0,
+      backgroundColor: "#F00",
+      zIndex: 0
+    };
+
+    let textStyle = {
+      margin: 0,
+      textAlign: "center"
+    };
+    return React.createElement(
+      "div",
+      { style: GifOverlayStyle },
+      React.createElement(
+        "h1",
+        { style: textStyle },
+        "YOLO"
+      )
+    );
+  }
+});
+
+module.exports = GifOverlay;
+
+},{"react":157}],191:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+
+//Sub-components
+
+//Component
+let Footer = React.createClass({
+  displayName: "Footer",
+
+  render: function () {
+    let footerStyle = {
+      width: "100%",
+      height: "200px",
+      textAlign: "center"
+    };
+    return React.createElement(
+      "div",
+      { style: footerStyle },
+      React.createElement(
+        "h1",
+        null,
+        "FOOTER"
+      )
+    );
+  }
+});
+
+module.exports = Footer;
+
+},{"react":157}],192:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+
+//Sub-components
+
+//Component
+let Header = React.createClass({
+  displayName: "Header",
+
+  render: function () {
+    let headerStyle = {
+      width: "100%",
+      height: "200px",
+      textAlign: "center"
+    };
+    return React.createElement(
+      "div",
+      { style: headerStyle },
+      React.createElement(
+        "h1",
+        null,
+        "HEADER"
+      )
+    );
+  }
+});
+
+module.exports = Header;
+
+},{"react":157}],193:[function(require,module,exports){
 // This is the main entry point for the application
 
 //Dependencies
@@ -22003,19 +22225,9 @@ const ReactDOM = require('react-dom');
 const GifsStore = require('./reflux/Gifs/GifsStore.jsx');
 
 //Components
-let GifList = require('./components/Gif/GifList.jsx');
-let Input = require('./components/Forms/Search/Input.jsx');
-
-//Fake data
-const gifs = [{
-  src: "https://media2.giphy.com/media/ue4rk7zGOW2Qg/giphy.gif"
-}, {
-  src: "https://media0.giphy.com/media/NmWXNMBS9uAhO/giphy.gif"
-}, {
-  src: "https://media0.giphy.com/media/uWmYB9cbZpwdO/giphy.gif"
-}, {
-  src: "https://media3.giphy.com/media/p6DsF6TrStko8/giphy.gif"
-}];
+let Header = require('./components/Header/Header.jsx');
+let Footer = require('./components/Footer/Footer.jsx');
+let App = require('./components/App/App.jsx');
 
 //Application Logic
 //Example :
@@ -22024,18 +22236,18 @@ const gifs = [{
 ReactDOM.render(React.createElement(
   'div',
   null,
-  React.createElement(Input, { type: 'text', placeholder: 'Search for Gifs' }),
-  React.createElement(GifList, { gifs: gifs })
+  React.createElement(Header, null),
+  React.createElement(App, null)
 ), document.getElementById('application'));
 
-},{"./components/Forms/Search/Input.jsx":184,"./components/Gif/GifList.jsx":186,"./reflux/Gifs/GifsStore.jsx":189,"react":157,"react-dom":1,"reflux":174}],188:[function(require,module,exports){
+},{"./components/App/App.jsx":184,"./components/Footer/Footer.jsx":191,"./components/Header/Header.jsx":192,"./reflux/Gifs/GifsStore.jsx":195,"react":157,"react-dom":1,"reflux":174}],194:[function(require,module,exports){
 var Reflux = require('reflux');
 
-var Actions = Reflux.createActions(['getGifs', 'gifsLoaded']);
+var Actions = Reflux.createActions(['getGifs', 'showGifs']);
 
 module.exports = Actions;
 
-},{"reflux":174}],189:[function(require,module,exports){
+},{"reflux":174}],195:[function(require,module,exports){
 //Dependencies
 const Reflux = require('reflux');
 const GifsActions = require('./GifsActions.jsx');
@@ -22048,28 +22260,27 @@ const GIPHY_API_KEY = '&limit=80&api_key=dc6zaTOxFJmzC';
 let GifsStore = Reflux.createStore({
   listenables: [GifsActions],
   init: function () {
-    this.loaded = true;
-    this.GIFS_ON_PAGE = 12; // Used in order to chose how many gifs on page you want to display
+    this.GIFS_ON_PAGE = 20; // Used in order to chose how many gifs on page you want to display
   },
   getGifs: function (inputValue) {
     let store = this;
-    // Gifs data fetched from the GIPHY API, base on user input.
-    if (this.loaded && inputValue.length >= 3) {
+
+    // Following request fetches Gifs data from the GIPHY API, based on user input.
+    if (inputValue.length >= 3) {
       request.get(GIPHY_API_BASE_URI + inputValue + GIPHY_API_KEY).end(function (err, res) {
-        // Save the response body data in the store, for the first 50
+        // Saving the response body data in the store
         store.gifs = res.body.data.slice(0, store.GIFS_ON_PAGE);
         this.loaded = false; //This will be modified by the GifsList Component, when Gifs are loaded
-        store.trigger("Gifs", store.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
       });
     } else {
-        console.log("Gifs not loaded yet");
+        console.log("Request too small");
       }
   },
-  gifsLoaded: function () {
-    this.loaded = true;
+  showGifs: function () {
+    this.trigger("showGifs", this.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
   }
 });
 
 module.exports = GifsStore;
 
-},{"./GifsActions.jsx":188,"reflux":174,"superagent":177}]},{},[187]);
+},{"./GifsActions.jsx":194,"reflux":174,"superagent":177}]},{},[193]);

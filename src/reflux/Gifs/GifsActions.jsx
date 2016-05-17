@@ -2,7 +2,7 @@ var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
   'getGifs',
-  'gifsLoaded'
+  'showGifs'
 ]);
 
 module.exports = Actions;

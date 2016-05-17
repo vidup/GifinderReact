@@ -9,24 +9,9 @@ const ReactDOM = require('react-dom');
 const GifsStore = require('./reflux/Gifs/GifsStore.jsx');
 
 //Components
-let GifList = require('./components/Gif/GifList.jsx');
-let Input = require('./components/Forms/Search/Input.jsx');
-
-//Fake data
-const gifs = [
-  {
-    src : "https://media2.giphy.com/media/ue4rk7zGOW2Qg/giphy.gif"
-  },
-  {
-    src : "https://media0.giphy.com/media/NmWXNMBS9uAhO/giphy.gif"
-  },
-  {
-    src : "https://media0.giphy.com/media/uWmYB9cbZpwdO/giphy.gif"
-  },
-  {
-    src : "https://media3.giphy.com/media/p6DsF6TrStko8/giphy.gif"
-  }
-];
+let Header = require('./components/Header/Header.jsx');
+let Footer = require('./components/Footer/Footer.jsx');
+let App = require('./components/App/App.jsx');
 
 //Application Logic
   //Example :
@@ -34,7 +19,8 @@ const gifs = [
 
 ReactDOM.render(
   <div>
-    <Input type="text" placeholder="Search for Gifs"/>
-    <GifList gifs={gifs}></GifList>
+    <Header/>
+    <App/>
+    {/*<Footer/>*/}
   </div>
-  , document.getElementById('application'));
+  ,document.getElementById('application'));
