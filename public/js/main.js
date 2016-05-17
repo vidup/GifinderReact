@@ -21899,14 +21899,18 @@ let App = React.createClass({
     }
   },
   render: function () {
+    console.log([0, Math.floor(this.state.gifs.length / 4)]);
+    console.log([Math.floor(this.state.gifs.length / 4), Math.floor(this.state.gifs.length / 2)]);
+    console.log([Math.floor(this.state.gifs.length / 2), 3 * Math.floor(this.state.gifs.length / 4)]);
+    console.log([3 * Math.floor(this.state.gifs.length / 4), this.state.gifs.length]);
     return React.createElement(
       'div',
       null,
       React.createElement(SearchForm, null),
-      React.createElement(GifList, { listID: '1', gifs: this.state.gifs.slice(0, 4) }),
-      React.createElement(GifList, { listID: '2', gifs: this.state.gifs.slice(5, 9) }),
-      React.createElement(GifList, { listID: '3', gifs: this.state.gifs.slice(10, 14) }),
-      React.createElement(GifList, { listID: '4', gifs: this.state.gifs.slice(15, 19) })
+      React.createElement(GifList, { listID: '1', gifs: this.state.gifs.slice(0, Math.floor(this.state.gifs.length / 4)) }),
+      React.createElement(GifList, { listID: '2', gifs: this.state.gifs.slice(Math.floor(this.state.gifs.length / 4), Math.floor(this.state.gifs.length / 2)) }),
+      React.createElement(GifList, { listID: '3', gifs: this.state.gifs.slice(Math.floor(this.state.gifs.length / 2), 3 * Math.floor(this.state.gifs.length / 4)) }),
+      React.createElement(GifList, { listID: '4', gifs: this.state.gifs.slice(3 * Math.floor(this.state.gifs.length / 4), this.state.gifs.length) })
     );
   }
 });
@@ -22011,6 +22015,9 @@ module.exports = SearchForm;
 },{"../../../reflux/Gifs/GifsActions.jsx":194,"./Buttons/Submit.jsx":185,"./Inputs/SearchInput.jsx":186,"react":157}],188:[function(require,module,exports){
 //Dependencies
 const React = require('react');
+const Reflux = require('reflux');
+const GifActions = require('../../../reflux/Gifs/GifsActions.jsx');
+const GifsStore = require('../../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
 let GifOverlay = require('./GifOverlay.jsx');
@@ -22019,16 +22026,18 @@ let GifOverlay = require('./GifOverlay.jsx');
 let Gif = React.createClass({
   displayName: 'Gif',
 
+  mixins: [Reflux.listenTo(GifsStore, "onGifsChange")],
   getInitialState: function () {
-    return { url: "", hovered: false };
+    return { url: "", hovered: false, activeID: Math.random() * 100 };
+  },
+  onGifsChange: function (event, activeID) {
+    if (event == "hideOverlays" && activeID != this.state.activeID) {
+      this.setState({ hovered: false });
+    }
   },
   onMouseEnter: function () {
+    GifActions.hideOverlays(this.state.activeID);
     this.setState({ hovered: true }); // Set the state to hovered
-    console.log("enter");
-  },
-  onMouseLeave: function () {
-    this.setState({ hovered: false }); // Set the state to not hovered
-    console.log("leave");
   },
   render: function () {
     let GifStyle = {
@@ -22036,30 +22045,39 @@ let Gif = React.createClass({
       display: "block",
       margin: 0,
       float: "left",
-      height: "auto" || this.props.height
+      height: "auto" || this.props.height,
+      zIndex: 0
     };
 
     let store = this;
 
     let overlayStatus = function () {
       if (store.state.hovered) {
-        return "block";
+        return "visible";
       } else {
-        return "none";
+        return "hidden";
       }
     };
 
     return React.createElement(
       'div',
-      null,
-      React.createElement('img', { src: this.props.src, style: GifStyle })
+      { style: { position: "relative", display: "block", float: "left", width: "100%" } },
+      React.createElement('img', {
+        onMouseEnter: this.onMouseEnter,
+        onMouseLeave: this.onMouseLeave,
+        src: this.props.src,
+        style: GifStyle }),
+      React.createElement(GifOverlay, {
+        visibility: overlayStatus(),
+        download: this.props.download
+      })
     );
   }
 });
 
 module.exports = Gif;
 
-},{"./GifOverlay.jsx":190,"react":157}],189:[function(require,module,exports){
+},{"../../../reflux/Gifs/GifsActions.jsx":194,"../../../reflux/Gifs/GifsStore.jsx":195,"./GifOverlay.jsx":190,"react":157,"reflux":174}],189:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const Reflux = require('reflux');
@@ -22127,25 +22145,37 @@ let GifOverlay = React.createClass({
     let GifOverlayStyle = {
       width: "100%",
       height: "100%",
-      position: "relative",
+      position: "absolute",
       top: 0,
-      display: this.props.display,
+      display: "block",
+      visibility: this.props.visibility,
       margin: 0,
-      backgroundColor: "#F00",
-      zIndex: 0
+      backgroundColor: "rgba(0,0,0,0.4)",
+      zIndex: 2
     };
 
+    let linkStyle = {
+      textDecoration: "none",
+      color: "#fff"
+    };
     let textStyle = {
       margin: 0,
-      textAlign: "center"
+      textAlign: "center",
+      top: 0,
+      marginTop: 50
+
     };
     return React.createElement(
       "div",
       { style: GifOverlayStyle },
       React.createElement(
-        "h1",
-        { style: textStyle },
-        "YOLO"
+        "a",
+        { href: this.props.download, style: linkStyle },
+        React.createElement(
+          "h1",
+          { style: textStyle },
+          "Direct Link"
+        )
       )
     );
   }
@@ -22243,7 +22273,7 @@ ReactDOM.render(React.createElement(
 },{"./components/App/App.jsx":184,"./components/Footer/Footer.jsx":191,"./components/Header/Header.jsx":192,"./reflux/Gifs/GifsStore.jsx":195,"react":157,"react-dom":1,"reflux":174}],194:[function(require,module,exports){
 var Reflux = require('reflux');
 
-var Actions = Reflux.createActions(['getGifs', 'showGifs']);
+var Actions = Reflux.createActions(['getGifs', 'showGifs', 'hideOverlays']);
 
 module.exports = Actions;
 
@@ -22260,7 +22290,7 @@ const GIPHY_API_KEY = '&limit=80&api_key=dc6zaTOxFJmzC';
 let GifsStore = Reflux.createStore({
   listenables: [GifsActions],
   init: function () {
-    this.GIFS_ON_PAGE = 20; // Used in order to chose how many gifs on page you want to display
+    this.GIFS_ON_PAGE = 40; // Used in order to chose how many gifs on page you want to display
   },
   getGifs: function (inputValue) {
     let store = this;
@@ -22278,6 +22308,10 @@ let GifsStore = Reflux.createStore({
   },
   showGifs: function () {
     this.trigger("showGifs", this.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
+  },
+  hideOverlays: function (activeID) {
+    this.activeID = activeID;
+    this.trigger('hideOverlays', this.activeID); // Send an order to the gifs to hide their overlay
   }
 });
 

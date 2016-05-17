@@ -12,21 +12,31 @@ let GifOverlay = React.createClass({
     let GifOverlayStyle = {
       width : "100%",
       height : "100%",
-      position : "relative",
+      position : "absolute",
       top : 0,
-      display : this.props.display,
+      display : "block",
+      visibility : this.props.visibility,
       margin : 0,
-      backgroundColor : "#F00",
-      zIndex : 0
+      backgroundColor : "rgba(0,0,0,0.4)",
+      zIndex : 2
     }
 
+    let linkStyle = {
+      textDecoration : "none",
+      color : "#fff"
+    }
     let textStyle = {
       margin : 0,
-      textAlign : "center"
+      textAlign : "center",
+      top : 0,
+      marginTop : 50
+
     }
     return (
       <div style={GifOverlayStyle}>
-        <h1 style={textStyle}>YOLO</h1>
+        <a href={this.props.download} style={linkStyle}>
+          <h1 style={textStyle}>Direct Link</h1>
+        </a>
       </div>
     );
   }

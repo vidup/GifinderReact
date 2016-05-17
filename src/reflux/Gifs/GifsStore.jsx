@@ -10,7 +10,7 @@ const GIPHY_API_KEY = '&limit=80&api_key=dc6zaTOxFJmzC';
 let GifsStore = Reflux.createStore({
   listenables : [GifsActions],
   init : function(){
-    this.GIFS_ON_PAGE = 20; // Used in order to chose how many gifs on page you want to display
+    this.GIFS_ON_PAGE = 40; // Used in order to chose how many gifs on page you want to display
   },
   getGifs : function(inputValue){
     let store = this;
@@ -28,6 +28,10 @@ let GifsStore = Reflux.createStore({
   },
   showGifs : function(){
     this.trigger("showGifs", this.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
+  },
+  hideOverlays : function(activeID){
+    this.activeID = activeID;
+    this.trigger('hideOverlays', this.activeID); // Send an order to the gifs to hide their overlay
   }
 });
 
