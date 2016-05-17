@@ -1,0 +1,8 @@
+.image{
+  padding : 0;
+  z-index: 2; // Cause we add html in gallery it visually moves the logo but it actually doesnt in html, so hover doesn't work if z-index not low.
+}
+
+.image img{
+  width : 100%;
+}

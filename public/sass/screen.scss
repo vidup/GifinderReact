@@ -1,0 +1,41 @@
+/* In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+// @import "compass";
+
+*{
+  box-sizing: border-box; //Pour mettre les bordures dans les divs
+}
+
+/*   Tools    */
+
+@import "tools/reset";
+@import "tools/animations";
+@import "tools/transform";
+@import "tools/shake";
+
+/*   Layout   */
+
+@import "layout/grid";
+
+/*   Base    */
+
+@import "base/colors";
+@import "base/style";
+@import "base/fonts";
+
+/*   Modules   */
+
+@import "modules/buttons";
+@import "modules/content";
+@import "modules/menu";
+@import "modules/article";
+@import "modules/separator";
+@import "modules/video";
+@import "modules/close";
+@import "modules/clickableBanner";
+@import "modules/gallery";
+@import "modules/form";
+@import "modules/image";
+@import "modules/user";

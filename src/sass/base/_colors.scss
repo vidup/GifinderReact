@@ -1,0 +1,16 @@
+// This file will not be compiled since its name starts with "_".
+// It will be imported in the screen.scss file
+
+//Colors variables for later use in other scss files
+//These comments wont be compiled, while /* */ comments will !
+
+/* Colors */
+$white : #FFFFFF;
+$green : #1BBC9B;
+$grey : #AEAEAE;
+$red : #E64C66;
+$darkblue : #2D3E50;
+
+.grey{
+  background-color: $grey;
+}

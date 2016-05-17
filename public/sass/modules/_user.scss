@@ -1,0 +1,17 @@
+.user{
+  display : none;
+}
+
+.user-info{
+  background-color: $white;
+  color : $darkblue;
+  font-size: 2em;
+  height : 60px;
+  line-height: 60px;
+  margin-bottom: 15px;
+}
+
+.user{
+  position: relative;
+  z-index: 3;
+}

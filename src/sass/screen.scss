@@ -1,0 +1,19 @@
+// This file will import all the other non-compiled scss files
+// from the base, layout, modules and tools folders
+
+
+*{
+  box-sizing: border-box; //Borders INSIDE divs (default is outside)
+}
+
+/* **** Tools **** */
+@import "tools/reset"; // One of the best resets you can find. From Eric Meyer.
+
+/* **** Base **** */
+@import "base/colors";
+
+/* **** Layout **** */
+@import "layout/grid";
+
+/* **** Modules **** */
+@import "modules/module";

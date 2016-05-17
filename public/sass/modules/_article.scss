@@ -1,0 +1,66 @@
+/* Article */
+
+.article{
+  font-family: "Monserrat", sans-serif;
+  padding : 10px;
+  text-align: center;
+}
+
+.header .title{
+  background-color: $pink;
+}
+
+.header{
+  padding : 0;
+  background-color: $green;
+}
+
+
+.article .title{
+  font-family: "Montserrat-Bold", sans-serif;
+  // margin-bottom : 15px;
+  font-size: 4em;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+@media only screen and (min-width : $medium){
+  .article .title{
+    font-size: 6em;
+  }
+}
+
+@media only screen and (min-width : $large){
+  .article .title{
+    font-size: 8em;
+  }
+}
+
+.article .subtitle{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.article #headerSubtitle{
+  margin-top : 15px; //I KNOW this is ugly, it's only temporary !
+}
+
+.article .subsubtitle{
+  margin: 15px 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.article p{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.article input{
+  text-align: center;
+  min-width: 250px;
+  height : 50px;
+  font-size: 1.3em;
+  margin: 5px auto;
+}

@@ -1,0 +1,11 @@
+.close{
+  position : fixed;
+  font-size: 1.2em;
+  padding : 5px;
+  top : 10px;
+  right : 25px;
+  background-color: #ddd;
+  border-radius: 3px;
+  cursor : pointer;
+  z-index: 9999;
+}

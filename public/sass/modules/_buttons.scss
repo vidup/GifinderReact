@@ -1,0 +1,72 @@
+// #FCC300 jaune
+// #CA2466 mauve
+// #F68A1F orange
+// #00B1EB bleu
+
+.menu-buttons{
+  text-align: center;
+}
+
+.buttonWrapper{
+  border : 7px solid rgba(255,255,255,0.4);
+  margin : 15px auto;
+  width : 120px;
+  height : 120px;
+  border-radius: 50%;
+
+}
+
+.button{
+  position : absolute;
+  height : 106px;
+  width : 106px;
+  border-radius: 50%;
+  cursor : pointer;
+
+  /* Shadows for 3D impression*/
+  -moz-box-shadow:     0 0 25px #000000;
+   -webkit-box-shadow:  0 0 25px #000000;
+   box-shadow:          0 0 25px #000000;
+
+  /* Transitions */
+  transition :  all 0.3s, box-shadow 0.1s, background-size 0.1s;
+}
+
+.button:active{
+  -moz-box-shadow:    inset 0 0 20px #000000;
+   -webkit-box-shadow: inset 0 0 20px #000000;
+   box-shadow:         inset 0 0 20px #000000;
+}
+
+.github{
+  position : absolute;
+  background : url('../img/GitHub_Logo.png') center no-repeat;
+  background-size: 95% auto;
+  background-color: rgba(150,150,150,0.5);
+}
+
+.github:hover{
+  background : url('../img/PNG/GitHub-Mark-Light-64px.png') center no-repeat;
+  background-color: #00B1EB;
+}
+
+.github:active{
+   background-size: 50% auto;
+}
+
+
+.linkedin{
+  background : url('../img/linkedin_black.png') center no-repeat;
+  background-size: 80% auto;
+  background-color: rgba(150,150,150,0.5);
+}
+
+.linkedin:hover{
+  background : url('../img/linkedin.png') center no-repeat;
+  background-size: 90% auto;
+  background-color: #CA2466;
+}
+
+.linkedin:active{
+  background-size: 70% auto;
+}

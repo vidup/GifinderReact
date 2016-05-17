@@ -1,0 +1,46 @@
+/* Animations */
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+/*
+    Example usage:
+    @include animation(10s, 5s, changecolour, infinite, linear)
+ */
+@mixin animation ($duration, $animation, $iterationCount, $timingFunction) {
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-iteration-count: $iterationCount;
+    -webkit-animation-timing-function : $timingFunction;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-iteration-count: $iterationCount;
+    -moz-animation-timing-function : $timingFunction;
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-iteration-count: $iterationCount;
+    -o-animation-timing-function : $timingFunction;
+    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-iteration-count: $iterationCount;
+    animation-timing-function : $timingFunction;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+}

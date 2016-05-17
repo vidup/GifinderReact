@@ -1,0 +1,39 @@
+// Form for account creation
+.form{
+  position : absolute;
+  top : 12%;
+  left : 0;
+  height : 100%;
+  background-color: $white;
+  display : none;
+  z-index: 6;
+  color : $darkblue;
+}
+
+@media only screen and (min-width : 625px){//This is here in order to allow the subtitle to appear even on mobuke?
+  .form{
+    position : absolute;
+    height : 100%;
+    top : 15%;
+  }
+}
+
+
+@media only screen and (min-width : $medium){
+  .form{
+    position : absolute;
+    height : 60%;
+    top : 15%;
+    left : 16.6%; // col-m-8 means width = 8/12=66.66%, so 33.33% left, divided by two (left and right of the form) => 16.6%
+  }
+}
+
+//Session buttons
+
+.session{
+  z-index: 4;
+}
+
+#logout{//I know, it's ugly, sorry :)
+  display : none;
+}

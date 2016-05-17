@@ -1,0 +1,41 @@
+$greyblue : #3E606F;
+$darkgreyblue:#193441;
+$beige : #d1dbbd;
+$kaki : #91aa9d;
+$blancCasse : #FCFFF5;
+$noir : #000;
+$pink : #E64C66 ;
+
+$white : #FFFFFF;
+$green : #1BBC9B;
+$grey : #AEAEAE;
+$red : #E64C66;
+$darkblue : #2D3E50;
+
+
+.red{
+	background-color: $red;
+}
+
+.greyblue{
+	background-color: $greyblue;
+	//color : #d1dbbd;
+	color : $blancCasse;
+}
+
+.darkgreyblue{
+	background-color: $darkgreyblue;
+}
+
+.kaki{
+	background-color: $kaki;
+}
+
+.beige{
+	background-color: $beige;
+	color : #575939;
+}
+
+.blancCasse{
+	background-color: $blancCasse;
+}

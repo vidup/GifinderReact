@@ -1,0 +1,73 @@
+$columns : 12!default;
+$gutter : 0px!default;
+$medium : 960px!default;
+$large : 1024px!default;
+
+%col{
+	float : left;
+	position : relative;
+	// min-height : 25px;
+	padding : 0 $gutter*0.5; //Chaque côté moitié de la goutière
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+html, body{
+	margin: 0;
+	padding : 0;
+	width : 100%;
+	height : 100%;
+	overflow-x: hidden;
+}
+.row{
+	margin : 0 ; //Colle les éléments aux bords
+	/* margin : 0 $gutter*-0.5; */
+	@extend %clearfix;
+}
+
+@for $i from 0 through $columns{
+	.col-center{
+		margin : 0 auto;
+		float : none;
+	}
+	.col-#{$i}{
+		@extend %col; //appelle %col
+		width : $i/$columns*100%;
+	}
+
+	.col-m-#{$i}, .col-l-#{$i}{@extend %col;} //On le fait ici sinon ça n'est pas possible dans un media query
+}
+
+@media only screen and (min-width : $medium){
+	.col-m-center{
+		margin : 0 auto;
+		float : none;
+	}
+	@for $i from 0 through $columns{
+	.col-m-#{$i}{
+		width : $i/$columns*100%;
+		}
+	}
+}
+
+@media only screen and (min-width : $large){
+	.col-l-center{
+		margin : 0 auto;
+		float : none;
+	}
+	@for $i from 0 through $columns{
+	.col-l-#{$i}{
+		width : $i/$columns*100%;
+		}
+	}
+}
+
+.hidden{
+	display : none;
+}

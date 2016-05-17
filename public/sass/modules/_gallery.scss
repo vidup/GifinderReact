@@ -1,0 +1,90 @@
+.gallery{
+  overflow : scroll;
+}
+
+.gif{
+  background : url('../img/loading.gif') center no-repeat;
+  height : 250px;
+  z-index: 5;
+}
+.gif img{
+  height : 200px;
+  width: auto;
+  display : table;
+  margin : 0 auto;
+  margin-top: 25px;
+}
+
+.gif .overlay {
+  display : none;
+  position :absolute;
+  top : 0;
+  left : 0;
+  height : 100%;
+  width : 100%;
+  //background-color: rgba(25,52,65,0.4);
+
+  // Text
+  font-family: "Museo Sans" sans-serif;
+  padding : 10px;
+  text-align: center;
+  color : white;
+  cursor : default;
+}
+
+.gif .overlay .subtitle{
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 250px;
+  cursor : pointer;
+}
+
+.gif .overlay .imgWrapper{
+  width : 80px;
+  height : 80px;
+  padding-top : 8px;
+  border-radius: 50%;
+  margin-top: 1px;
+  //Transitions
+  transition: all 0.3s;
+}
+
+.gif .overlay img{
+  min-width: 0px;
+  width : 64px;
+  height : 64px;
+  margin-top: 0;
+}
+
+.gif .overlay .imgWrapper:hover{
+//  background-color: grey;
+  background-color: $green;
+  cursor : pointer;
+}
+
+.delete{
+  display : none;
+}
+
+.delete:hover{
+  background-color: $red !important;
+}
+
+.delete.del{
+  display : block;
+}
+.gif .overlay textarea{
+  display : none;
+  position: relative;
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+
+/* ******* Slider text color ******* */
+.noUi-pips{
+  color : $white !important;
+}
+
+.noUi-marker{
+  background : $white !important;
+}

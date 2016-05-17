@@ -1,0 +1,27 @@
+/* Contenu */
+
+.content{
+  margin : 0;
+  padding : 25px;
+  position: absolute;
+  display : block;
+  width : 100vw;
+  height : 100vh;
+  left : 0;
+  background-color: white;
+  overflow: auto;
+}
+
+@media only screen and (min-width : 960px){
+  .content{
+    margin : 0;
+    padding : 25px;
+    position: absolute;
+    display : block;
+    width : 83vw;
+    height : 100vh;
+    left : 100vw;
+    background-color: white;
+    overflow: auto;
+  }
+}
