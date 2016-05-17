@@ -22044,6 +22044,7 @@ let Gif = React.createClass({
       width: "100%",
       display: "block",
       margin: 0,
+      padding: 5,
       float: "left",
       height: "auto" || this.props.height,
       zIndex: 0
