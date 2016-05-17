@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //Database
-var db = require('../database/db');
-mongoose.connect(db.distant);
+// var db = require('../database/db');
+// mongoose.connect(db.distant);
 
 //Models
 var User = require('../models/User');
