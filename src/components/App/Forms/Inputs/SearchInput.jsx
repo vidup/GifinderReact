@@ -8,7 +8,7 @@ const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
 let Input = React.createClass({
   onChange : function(e){
     this.setState({value : e.target.value}, function(){
-      GifsActions.getGifs(this.state.value);
+      GifsActions.setSearchInput(this.state.value);
     });
   },
   render : function(){

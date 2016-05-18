@@ -1,19 +1,320 @@
 * {
   box-sizing: border-box; }
 
-
+/* **** Tools **** */
 /* **** Base **** */
-html, body{
-  width : 100%;
-  height : 100%;
-  margin : 0;
-  padding : 0;
-}
-
 /* Colors */
-.grey {
-  background-color: #AEAEAE; }
+.red {
+  background-color: #E64C66; }
+
+.greyblue {
+  background-color: #3E606F;
+  color: #FCFFF5; }
+
+.darkgreyblue {
+  background-color: #193441; }
+
+.kaki {
+  background-color: #91aa9d; }
+
+.beige {
+  background-color: #d1dbbd;
+  color: #575939; }
+
+.blancCasse {
+  background-color: #FCFFF5; }
+
+/* Fonts */
+@font-face {
+  font-family: 'Track';
+  /*a name to be used later*/
+  src: url("../fonts/Track.ttf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'TrackItalic';
+  /*a name to be used later*/
+  src: url("../fonts/Track Italic.ttf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Museo Sans';
+  /*a name to be used later*/
+  src: url("../fonts/museosans500/MuseoSans_500-webfont.ttf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Museo Sans Italic';
+  /*a name to be used later*/
+  src: url("../fonts/museosans500/MuseoSans_500_Italic-webfont.ttf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Museo Sans Bold';
+  /*a name to be used later*/
+  src: url("../fonts/MuseoSans900.otf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Monserrat';
+  /*a name to be used later*/
+  src: url("../fonts/Montserrat-Regular.otf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  /*a name to be used later*/
+  src: url("../fonts/Montserrat-Light.otf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  /*a name to be used later*/
+  src: url("../fonts/Montserrat-Bold.otf");
+  /*URL to font*/ }
+
+@font-face {
+  font-family: 'Montserrat-Black';
+  /*a name to be used later*/
+  src: url("../fonts/Montserrat-Black.otf");
+  /*URL to font*/ }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #3E606F; }
 
 /* **** Layout **** */
+.col-0, .col-m-0, .col-l-0, .col-1, .col-m-1, .col-l-1, .col-2, .col-m-2, .col-l-2, .col-3, .col-m-3, .col-l-3, .col-4, .col-m-4, .col-l-4, .col-5, .col-m-5, .col-l-5, .col-6, .col-m-6, .col-l-6, .col-7, .col-m-7, .col-l-7, .col-8, .col-m-8, .col-l-8, .col-9, .col-m-9, .col-l-9, .col-10, .col-m-10, .col-l-10, .col-11, .col-m-11, .col-l-11, .col-12, .col-m-12, .col-l-12 {
+  float: left;
+  position: relative;
+  padding: 0 0px; }
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; }
+
+.row {
+  margin: 0;
+  /* margin : 0 $gutter*-0.5; */ }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-0 {
+  width: 0%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-1 {
+  width: 8.33333%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-2 {
+  width: 16.66667%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-3 {
+  width: 25%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-4 {
+  width: 33.33333%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-5 {
+  width: 41.66667%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-6 {
+  width: 50%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-7 {
+  width: 58.33333%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-8 {
+  width: 66.66667%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-9 {
+  width: 75%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-10 {
+  width: 83.33333%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-11 {
+  width: 91.66667%; }
+
+.col-center {
+  margin: 0 auto;
+  float: none; }
+
+.col-12 {
+  width: 100%; }
+
+@media only screen and (min-width: 960px) {
+  .col-m-center {
+    margin: 0 auto;
+    float: none; }
+  .col-m-0 {
+    width: 0%; }
+  .col-m-1 {
+    width: 8.33333%; }
+  .col-m-2 {
+    width: 16.66667%; }
+  .col-m-3 {
+    width: 25%; }
+  .col-m-4 {
+    width: 33.33333%; }
+  .col-m-5 {
+    width: 41.66667%; }
+  .col-m-6 {
+    width: 50%; }
+  .col-m-7 {
+    width: 58.33333%; }
+  .col-m-8 {
+    width: 66.66667%; }
+  .col-m-9 {
+    width: 75%; }
+  .col-m-10 {
+    width: 83.33333%; }
+  .col-m-11 {
+    width: 91.66667%; }
+  .col-m-12 {
+    width: 100%; } }
+
+@media only screen and (min-width: 1024px) {
+  .col-l-center {
+    margin: 0 auto;
+    float: none; }
+  .col-l-0 {
+    width: 0%; }
+  .col-l-1 {
+    width: 8.33333%; }
+  .col-l-2 {
+    width: 16.66667%; }
+  .col-l-3 {
+    width: 25%; }
+  .col-l-4 {
+    width: 33.33333%; }
+  .col-l-5 {
+    width: 41.66667%; }
+  .col-l-6 {
+    width: 50%; }
+  .col-l-7 {
+    width: 58.33333%; }
+  .col-l-8 {
+    width: 66.66667%; }
+  .col-l-9 {
+    width: 75%; }
+  .col-l-10 {
+    width: 83.33333%; }
+  .col-l-11 {
+    width: 91.66667%; }
+  .col-l-12 {
+    width: 100%; } }
+
+.hidden {
+  display: none; }
+
 /* **** Modules **** */
-/* **** Tools **** */
+/* Header */
+.header {
+  font-family: "Monserrat", sans-serif;
+  padding: 0;
+  text-align: center;
+  display: block; }
+
+.header .title {
+  background-color: #E64C66;
+  color: #FFFFFF; }
+
+.header .title {
+  font-family: "Montserrat-Bold", sans-serif;
+  margin: 0;
+  font-size: 4em;
+  text-align: center;
+  padding-bottom: 15px; }
+
+@media only screen and (min-width: 960px) {
+  .header .title {
+    font-size: 6em; } }
+
+@media only screen and (min-width: 1024px) {
+  .header .title {
+    font-size: 8em; } }
+
+.header .subtitle {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  background-color: #1BBC9B; }
+
+.article #headerSubtitle {
+  margin-top: 15px; }
+
+.article .subsubtitle {
+  margin: 15px 0;
+  font-size: 1.2em;
+  text-align: center; }
+
+.article p {
+  text-align: justify;
+  text-justify: inter-word; }
+
+.article input {
+  text-align: center;
+  min-width: 250px;
+  height: 50px;
+  font-size: 1.3em;
+  margin: 5px auto; }

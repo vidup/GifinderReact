@@ -2,18 +2,21 @@
 const React = require('react');
 
 //Sub-components
+let Title = require('./Title.jsx');
+let Subtitle = require('./Subtitle.jsx');
 
 //Component
 let Header = React.createClass({
   render : function(){
     let headerStyle = {
       width : "100%",
-      height : "200px",
+      height : "auto",
       textAlign : "center"
     }
     return (
-      <div style={headerStyle}>
-        <h1>HEADER</h1>
+      <div style={headerStyle} className="header col-12">
+        <Title content={this.props.title}/>
+        <Subtitle content={this.props.subtitle}/>
       </div>
     );
   }

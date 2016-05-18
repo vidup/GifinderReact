@@ -12,22 +12,23 @@ let GifsStore = Reflux.createStore({
   init : function(){
     this.GIFS_ON_PAGE = 40; // Used in order to chose how many gifs on page you want to display
   },
-  getGifs : function(inputValue){
+  setSearchInput : function(inputValue){
+    this.inputValue = inputValue;
+  },
+  showGifs : function(){
     let store = this;
-
-    // Following request fetches Gifs data from the GIPHY API, based on user input.
-    if(inputValue.length>=3){
-      request.get(GIPHY_API_BASE_URI+inputValue+GIPHY_API_KEY).end(function(err, res){
+    if(store.inputValue.length>=3){
+      // Following request fetches Gifs data from the GIPHY API, based on user input.
+      request.get(GIPHY_API_BASE_URI+store.inputValue+GIPHY_API_KEY).end(function(err, res){
         // Saving the response body data in the store
       	store.gifs = res.body.data.slice(0,store.GIFS_ON_PAGE);
-        this.loaded = false; //This will be modified by the GifsList Component, when Gifs are loaded
+        store.trigger("showGifs", store.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
       });
     }else{
       console.log("Request too small");
+      let errorMessage = "Sorry, but you need to type at least 3 characters";
+      this.trigger('error', errorMessage);
     }
-  },
-  showGifs : function(){
-    this.trigger("showGifs", this.gifs); // Broadcast of the state to all components listening to the "Gifs" Action.
   },
   hideOverlays : function(activeID){
     this.activeID = activeID;

@@ -1,7 +1,7 @@
 var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
-  'getGifs',
+  'setSearchInput',
   'showGifs',
   'hideOverlays'
 ]);

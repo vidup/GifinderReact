@@ -18,8 +18,11 @@ let App = require('./components/App/App.jsx');
       // ReactDOM.render(<ComponentName/>, document.getElementById('persons'));
 
 ReactDOM.render(
-  <div>
-    <Header/>
+  <div className="row">
+    <Header
+      title="Gifinder"
+      subtitle="Use the search function to find all the Gifs you couldn't even dream of!"
+    />
     <App/>
     {/*<Footer/>*/}
   </div>
