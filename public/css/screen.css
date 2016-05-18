@@ -86,7 +86,7 @@ html, body {
   padding: 0; }
 
 body {
-  background-color: #3E606F; }
+  background-color: #193441; }
 
 /* **** Layout **** */
 .col-0, .col-m-0, .col-l-0, .col-1, .col-m-1, .col-l-1, .col-2, .col-m-2, .col-l-2, .col-3, .col-m-3, .col-l-3, .col-4, .col-m-4, .col-l-4, .col-5, .col-m-5, .col-l-5, .col-6, .col-m-6, .col-l-6, .col-7, .col-m-7, .col-l-7, .col-8, .col-m-8, .col-l-8, .col-9, .col-m-9, .col-l-9, .col-10, .col-m-10, .col-l-10, .col-11, .col-m-11, .col-l-11, .col-12, .col-m-12, .col-l-12 {
@@ -331,9 +331,10 @@ html, body {
   width: 100%;
   display: block;
   margin: 0;
-  padding: 15px;
+  padding: 5px;
   float: left;
   height: auto;
+  min-height: 260px;
   z-index: 0; }
 
 /* GifList Component */
@@ -341,5 +342,5 @@ html, body {
   height: auto;
   margin: auto;
   float: left;
-  background-color: #FFFFFF;
+  background-color: #193441;
   display: block; }

@@ -5,7 +5,8 @@ const GifsStore = require('../../../reflux/Gifs/GifsStore.jsx');
 const GifsActions = require('../../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
-const Gif = require('./Gif.jsx');
+const GifCanvas = require('./GifCanvas.jsx');
+const FlipMove = require('react-flip-move');
 
 //Component
 let GifList = React.createClass({
@@ -25,16 +26,21 @@ let GifList = React.createClass({
   render : function(){
     let generateGif = function(gif, index){
       return (
-        <Gif
-          src={gif.images["fixed_height_small"].url}
-          download={gif.images.original.url}
-          key={gif.images.original.url+index+Math.floor(Math.random()*1000)}>
-        </Gif>);
+
+          <GifCanvas
+            src={gif.images["fixed_height_small"].url}
+            download={gif.images.original.url}
+            key={gif.images.original.url+index+Math.floor(Math.random()*1000)}>
+          </GifCanvas>
+      );
     }
 
     return (
-      <div className=".gifList col-12 col-m-6 col-l-3">
-        {this.props.gifs.map(generateGif)}
+      <div className="gifList col-12 col-m-6 col-l-3">
+      <FlipMove
+        enterAnimation="accordianVertical" leaveAnimation="accordianVertical">
+          {this.props.gifs.map(generateGif)}
+          </FlipMove>
       </div>
     );
   }
