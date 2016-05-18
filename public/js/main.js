@@ -22040,15 +22040,6 @@ let Gif = React.createClass({
     this.setState({ hovered: true }); // Set the state to hovered
   },
   render: function () {
-    let GifStyle = {
-      width: "100%",
-      display: "block",
-      margin: 0,
-      padding: 5,
-      float: "left",
-      height: "auto" || this.props.height,
-      zIndex: 0
-    };
 
     let store = this;
 
@@ -22067,7 +22058,7 @@ let Gif = React.createClass({
         onMouseEnter: this.onMouseEnter,
         onMouseLeave: this.onMouseLeave,
         src: this.props.src,
-        style: GifStyle }),
+        className: 'gif' }),
       React.createElement(GifOverlay, {
         visibility: overlayStatus(),
         download: this.props.download
@@ -22111,17 +22102,9 @@ let GifList = React.createClass({
         key: gif.images.original.url + index + Math.floor(Math.random() * 1000) });
     };
 
-    let listStyle = {
-      width: "25%",
-      height: "auto",
-      margin: "auto",
-      float: "left",
-      display: "block"
-    };
-
     return React.createElement(
       'div',
-      { style: listStyle },
+      { className: '.gifList col-12 col-m-6 col-l-3' },
       this.props.gifs.map(generateGif)
     );
   }

@@ -32,16 +32,8 @@ let GifList = React.createClass({
         </Gif>);
     }
 
-    let listStyle = {
-      width : "25%",
-      height : "auto",
-      margin : "auto",
-      float : "left",
-      display : "block"
-    }
-
     return (
-      <div style = {listStyle}>
+      <div className=".gifList col-12 col-m-6 col-l-3">
         {this.props.gifs.map(generateGif)}
       </div>
     );

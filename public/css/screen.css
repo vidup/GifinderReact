@@ -267,6 +267,13 @@ html, body {
   display: none; }
 
 /* **** Modules **** */
+/* Application Div */
+.application {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative; }
+
 /* Header */
 .header {
   font-family: "Monserrat", sans-serif;
@@ -318,3 +325,21 @@ html, body {
   height: 50px;
   font-size: 1.3em;
   margin: 5px auto; }
+
+/* Gif Component */
+.gif {
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 15px;
+  float: left;
+  height: auto;
+  z-index: 0; }
+
+/* GifList Component */
+.gifList {
+  height: auto;
+  margin: auto;
+  float: left;
+  background-color: #FFFFFF;
+  display: block; }
