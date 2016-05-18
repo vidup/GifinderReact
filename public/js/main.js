@@ -22751,7 +22751,6 @@ const GifsStore = require('../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
 let GifList = require('./Gif/GifList.jsx');
-let SearchForm = require('./Forms/SearchForm.jsx');
 
 //Component
 let App = React.createClass({
@@ -22774,7 +22773,6 @@ let App = React.createClass({
     return React.createElement(
       'div',
       { className: 'col-12' },
-      React.createElement(SearchForm, null),
       React.createElement(GifList, { listID: '1', gifs: this.state.gifs.slice(0, Math.floor(this.state.gifs.length / 4)) }),
       React.createElement(GifList, { listID: '2', gifs: this.state.gifs.slice(Math.floor(this.state.gifs.length / 4), Math.floor(this.state.gifs.length / 2)) }),
       React.createElement(GifList, { listID: '3', gifs: this.state.gifs.slice(Math.floor(this.state.gifs.length / 2), 3 * Math.floor(this.state.gifs.length / 4)) }),
@@ -22785,7 +22783,7 @@ let App = React.createClass({
 
 module.exports = App;
 
-},{"../../reflux/Gifs/GifsStore.jsx":203,"./Forms/SearchForm.jsx":193,"./Gif/GifList.jsx":195,"react":163,"reflux":180}],191:[function(require,module,exports){
+},{"../../reflux/Gifs/GifsStore.jsx":206,"./Gif/GifList.jsx":196,"react":163,"reflux":180}],191:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
@@ -22798,7 +22796,7 @@ let Submit = React.createClass({
 
   render: function () {
     const InputStyle = {
-      width: "25%",
+      width: "300px",
       height: "50px",
       lineHeight: "50px",
       margin: "auto",
@@ -22814,7 +22812,7 @@ let Submit = React.createClass({
 
 module.exports = Submit;
 
-},{"../../../../reflux/Gifs/GifsActions.jsx":202,"react":163}],192:[function(require,module,exports){
+},{"../../../../reflux/Gifs/GifsActions.jsx":205,"react":163}],192:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
@@ -22832,7 +22830,7 @@ let Input = React.createClass({
   },
   render: function () {
     const InputStyle = {
-      width: "25%",
+      width: "300px",
       height: "50px",
       lineHeight: "50px",
       margin: "auto",
@@ -22849,38 +22847,131 @@ let Input = React.createClass({
 
 module.exports = Input;
 
-},{"../../../../reflux/Gifs/GifsActions.jsx":202,"react":163}],193:[function(require,module,exports){
+},{"../../../../reflux/Gifs/GifsActions.jsx":205,"react":163}],193:[function(require,module,exports){
 //Dependencies
 const React = require('react');
-const GifsActions = require('../../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
-let Submit = require('./Buttons/Submit.jsx');
-let SearchInput = require('./Inputs/SearchInput.jsx');
 
 //Component
-let SearchForm = React.createClass({
-  displayName: 'SearchForm',
+let DownloadButton = React.createClass({
+  displayName: "DownloadButton",
 
-  onSubmit: function (e) {
-    e.preventDefault();
-    this.setState({ value: e.target.value }, function () {
-      GifsActions.showGifs();
-    });
+  getInitialState: function () {
+    return { hover: false };
+  },
+  onMouseEnter: function () {
+    this.setState({ hover: true });
+  },
+  onMouseLeave: function () {
+    this.setState({ hover: false });
   },
   render: function () {
+    const ButtonStyle = {
+      display: "block",
+      backgroundColor: "transparent",
+      textDecoration: "none",
+      margin: " 5px auto"
+    };
+    let imgStyle = {
+      display: "block",
+      margin: "0 auto",
+      zIndex: 5,
+      width: "85px",
+      height: "80px",
+      paddingTop: "4px",
+      borderRadius: "50%",
+      transition: "all 0.3s"
+    };
+
+    const imgStyleHover = {
+      backgroundColor: "#E64C66"
+    };
+
+    imgStyle = !this.state.hover ? imgStyle : Object.assign({}, imgStyle, imgStyleHover);
     return React.createElement(
-      'form',
-      { onSubmit: this.onSubmit },
-      React.createElement(SearchInput, { type: 'text', placeholder: 'Search for Gifs' }),
-      React.createElement(Submit, null)
+      "a",
+      { href: this.props.link, style: ButtonStyle },
+      React.createElement(
+        "div",
+        { className: "imgWrapper", style: imgStyle },
+        React.createElement("img", {
+          src: "../../../../img/download.png", alt: "download", className: "download",
+          onMouseEnter: this.onMouseEnter,
+          onMouseLeave: this.onMouseLeave,
+          style: { display: "block", margin: "0 auto", width: "64px", height: "64px" }
+        })
+      )
     );
   }
 });
 
-module.exports = SearchForm;
+module.exports = DownloadButton;
 
-},{"../../../reflux/Gifs/GifsActions.jsx":202,"./Buttons/Submit.jsx":191,"./Inputs/SearchInput.jsx":192,"react":163}],194:[function(require,module,exports){
+},{"react":163}],194:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+
+//Sub-components
+
+//Component
+let GetLinkButton = React.createClass({
+  displayName: "GetLinkButton",
+
+  getInitialState: function () {
+    return { hover: false };
+  },
+  onMouseEnter: function () {
+    this.setState({ hover: true });
+  },
+  onMouseLeave: function () {
+    this.setState({ hover: false });
+  },
+  render: function () {
+    const ButtonStyle = {
+      display: "block",
+      backgroundColor: "transparent",
+      textDecoration: "none",
+      margin: "5px auto",
+      padding: "5px"
+
+    };
+    let imgStyle = {
+      display: "block",
+      margin: "0 auto",
+      zIndex: 5,
+      width: "85px",
+      height: "80px",
+      paddingTop: "8px",
+      borderRadius: "50%",
+      transition: "all 0.3s"
+    };
+
+    const imgStyleHover = {
+      backgroundColor: "#E64C66"
+    };
+
+    imgStyle = !this.state.hover ? imgStyle : Object.assign({}, imgStyle, imgStyleHover);
+    return React.createElement(
+      "a",
+      { href: this.props.link, style: ButtonStyle },
+      React.createElement(
+        "div",
+        { className: "imgWrapper", style: imgStyle },
+        React.createElement("img", {
+          src: "../../../../img/chat.png", alt: "download", className: "download",
+          onMouseEnter: this.onMouseEnter,
+          onMouseLeave: this.onMouseLeave,
+          style: { display: "block", margin: "0 auto", width: "64px", height: "64px" }
+        })
+      )
+    );
+  }
+});
+
+module.exports = GetLinkButton;
+
+},{"react":163}],195:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const Reflux = require('reflux');
@@ -22902,7 +22993,8 @@ let Gif = React.createClass({
       hovered: false,
       activeID: Math.random() * 100,
       imageLoaded: false,
-      backgroundColor: Colors.randomBeautifulGrey()
+      backgroundColor: Colors.randomBeautifulGrey(),
+      loadingFailed: false
     };
   },
   onGifsChange: function (event, activeID) {
@@ -22914,8 +23006,11 @@ let Gif = React.createClass({
     GifActions.hideOverlays(this.state.activeID);
     this.setState({ hovered: true }); // Set the state to hovered
   },
-  handleImageLoaded() {
+  handleImageLoaded: function () {
     this.setState({ backgroundColor: "transparent" });
+  },
+  handleImageFailed: function () {
+    this.setState({ loadingFailed: true });
   },
   render: function () {
 
@@ -22928,23 +23023,39 @@ let Gif = React.createClass({
         return "hidden";
       }
     };
+
+    let generateImage = function () {
+      if (component.state.loadingFailed) {
+        return React.createElement(
+          'h1',
+          null,
+          'Error : image couldn\'t load. Sorry :\'('
+        );
+      } else {
+        return React.createElement('img', {
+          onMouseEnter: component.onMouseEnter,
+          onMouseLeave: component.onMouseLeave,
+          onLoad: component.handleImageLoaded,
+          onError: component.handleImageFailed,
+          src: component.props.src,
+          className: 'gif',
+          style: backgroundStyle
+        });
+      }
+    };
+
     let backgroundStyle = {
       backgroundColor: this.state.backgroundColor
     };
     return React.createElement(
       'div',
       { style: { position: "relative", display: "block", float: "left", width: "100%" } },
-      React.createElement('img', {
-        onMouseEnter: this.onMouseEnter,
-        onMouseLeave: this.onMouseLeave,
-        onLoad: this.handleImageLoaded,
-        src: this.props.src,
-        className: 'gif',
-        style: backgroundStyle
-      }),
+      generateImage(),
       React.createElement(GifOverlay, {
         visibility: overlayStatus(),
-        download: this.props.download
+        download: this.props.download,
+        origin: this.props.origin,
+        giphy: this.props.giphy
       })
     );
   }
@@ -22952,7 +23063,7 @@ let Gif = React.createClass({
 
 module.exports = Gif;
 
-},{"../../../reflux/Gifs/GifsActions.jsx":202,"../../../reflux/Gifs/GifsStore.jsx":203,"../../../tools/colors":204,"./GifOverlay.jsx":196,"react":163,"reflux":180}],195:[function(require,module,exports){
+},{"../../../reflux/Gifs/GifsActions.jsx":205,"../../../reflux/Gifs/GifsStore.jsx":206,"../../../tools/colors":207,"./GifOverlay.jsx":197,"react":163,"reflux":180}],196:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 const Reflux = require('reflux');
@@ -22983,6 +23094,8 @@ let GifList = React.createClass({
       return React.createElement(GifCanvas, {
         src: gif.images["fixed_height_small"].url,
         download: gif.images.original.url,
+        giphy: gif.bitly_url,
+        origin: gif.source_post_url,
         key: gif.images.original.url + index + Math.floor(Math.random() * 1000) });
     };
 
@@ -23001,15 +23114,18 @@ let GifList = React.createClass({
 
 module.exports = GifList;
 
-},{"../../../reflux/Gifs/GifsStore.jsx":203,"./GifCanvas.jsx":194,"react":163,"react-flip-move":5,"reflux":180}],196:[function(require,module,exports){
+},{"../../../reflux/Gifs/GifsStore.jsx":206,"./GifCanvas.jsx":195,"react":163,"react-flip-move":5,"reflux":180}],197:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
 //Sub-components
+const DownloadButton = require('./DownloadButton.jsx');
+const GiphyLinkButton = require('./GiphyLinkButton.jsx');
+const GetLinkButton = require('./GetLinkButton.jsx');
 
 //Component
 let GifOverlay = React.createClass({
-  displayName: "GifOverlay",
+  displayName: 'GifOverlay',
 
   getInitialState: function () {
     return { url: "" };
@@ -23024,7 +23140,8 @@ let GifOverlay = React.createClass({
       visibility: this.props.visibility,
       margin: 0,
       backgroundColor: "rgba(0,0,0,0.4)",
-      zIndex: 2
+      zIndex: 2,
+      padding: "15px"
     };
 
     let linkStyle = {
@@ -23033,30 +23150,82 @@ let GifOverlay = React.createClass({
     };
     let textStyle = {
       margin: 0,
-      textAlign: "center",
-      top: 0,
-      marginTop: 50
-
+      textAlign: "center"
     };
     return React.createElement(
-      "div",
+      'div',
       { style: GifOverlayStyle },
-      React.createElement(
-        "a",
-        { href: this.props.download, style: linkStyle },
-        React.createElement(
-          "h1",
-          { style: textStyle },
-          "Direct Link"
-        )
-      )
+      React.createElement(DownloadButton, { link: this.props.download, style: { visibility: this.props.visibility } }),
+      React.createElement(GiphyLinkButton, { link: this.props.giphy, style: { visibility: this.props.visibility } }),
+      React.createElement(GetLinkButton, { link: this.props.origin, style: { visibility: this.props.visibility } })
     );
   }
 });
 
 module.exports = GifOverlay;
 
-},{"react":163}],197:[function(require,module,exports){
+},{"./DownloadButton.jsx":193,"./GetLinkButton.jsx":194,"./GiphyLinkButton.jsx":198,"react":163}],198:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+
+//Sub-components
+
+//Component
+let GiphyLinkButton = React.createClass({
+  displayName: "GiphyLinkButton",
+
+  getInitialState: function () {
+    return { hover: false };
+  },
+  onMouseEnter: function () {
+    this.setState({ hover: true });
+  },
+  onMouseLeave: function () {
+    this.setState({ hover: false });
+  },
+  render: function () {
+    const ButtonStyle = {
+      display: "block",
+      backgroundColor: "transparent",
+      textDecoration: "none",
+      margin: "5px auto"
+    };
+    let imgStyle = {
+      display: "block",
+      margin: "0 auto",
+      zIndex: 5,
+      width: "105px",
+      height: "40px",
+      padding: "5px",
+      borderRadius: "5px",
+      transition: "all 0.3s"
+    };
+
+    const imgStyleHover = {
+      // backgroundColor : "#000"
+    };
+
+    imgStyle = !this.state.hover ? imgStyle : Object.assign({}, imgStyle, imgStyleHover);
+    return React.createElement(
+      "a",
+      { href: this.props.link, style: ButtonStyle },
+      React.createElement(
+        "div",
+        { className: "imgWrapper", style: imgStyle },
+        React.createElement("img", {
+          src: "../../../../img/GiphyTextWhite.png", alt: "download", className: "download",
+          onMouseEnter: this.onMouseEnter,
+          onMouseLeave: this.onMouseLeave,
+          style: { display: "block", margin: "0 auto" }
+        })
+      )
+    );
+  }
+});
+
+module.exports = GiphyLinkButton;
+
+},{"react":163}],199:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
@@ -23086,13 +23255,14 @@ let Footer = React.createClass({
 
 module.exports = Footer;
 
-},{"react":163}],198:[function(require,module,exports){
+},{"react":163}],200:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
 //Sub-components
 let Title = require('./Title.jsx');
 let Subtitle = require('./Subtitle.jsx');
+const SearchForm = require('./SearchForm.jsx');
 
 //Component
 let Header = React.createClass({
@@ -23108,14 +23278,46 @@ let Header = React.createClass({
       'div',
       { style: headerStyle, className: 'header col-12' },
       React.createElement(Title, { content: this.props.title }),
-      React.createElement(Subtitle, { content: this.props.subtitle })
+      React.createElement(Subtitle, { content: this.props.subtitle }),
+      React.createElement(SearchForm, null)
     );
   }
 });
 
 module.exports = Header;
 
-},{"./Subtitle.jsx":199,"./Title.jsx":200,"react":163}],199:[function(require,module,exports){
+},{"./SearchForm.jsx":201,"./Subtitle.jsx":202,"./Title.jsx":203,"react":163}],201:[function(require,module,exports){
+//Dependencies
+const React = require('react');
+const GifsActions = require('../../reflux/Gifs/GifsActions.jsx');
+
+//Sub-components
+let Submit = require('../App/Forms/Buttons/Submit.jsx');
+let SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
+
+//Component
+let SearchForm = React.createClass({
+  displayName: 'SearchForm',
+
+  onSubmit: function (e) {
+    e.preventDefault();
+    this.setState({ value: e.target.value }, function () {
+      GifsActions.showGifs();
+    });
+  },
+  render: function () {
+    return React.createElement(
+      'form',
+      { onSubmit: this.onSubmit },
+      React.createElement(SearchInput, { type: 'text', placeholder: 'Search for Gifs' }),
+      React.createElement(Submit, null)
+    );
+  }
+});
+
+module.exports = SearchForm;
+
+},{"../../reflux/Gifs/GifsActions.jsx":205,"../App/Forms/Buttons/Submit.jsx":191,"../App/Forms/Inputs/SearchInput.jsx":192,"react":163}],202:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
@@ -23136,7 +23338,7 @@ let Subtitle = React.createClass({
 
 module.exports = Subtitle;
 
-},{"react":163}],200:[function(require,module,exports){
+},{"react":163}],203:[function(require,module,exports){
 //Dependencies
 const React = require('react');
 
@@ -23157,7 +23359,7 @@ let Title = React.createClass({
 
 module.exports = Title;
 
-},{"react":163}],201:[function(require,module,exports){
+},{"react":163}],204:[function(require,module,exports){
 // This is the main entry point for the application
 
 //Dependencies
@@ -23187,14 +23389,14 @@ ReactDOM.render(React.createElement(
   React.createElement(App, null)
 ), document.getElementById('application'));
 
-},{"./components/App/App.jsx":190,"./components/Footer/Footer.jsx":197,"./components/Header/Header.jsx":198,"./reflux/Gifs/GifsStore.jsx":203,"react":163,"react-dom":1,"reflux":180}],202:[function(require,module,exports){
+},{"./components/App/App.jsx":190,"./components/Footer/Footer.jsx":199,"./components/Header/Header.jsx":200,"./reflux/Gifs/GifsStore.jsx":206,"react":163,"react-dom":1,"reflux":180}],205:[function(require,module,exports){
 var Reflux = require('reflux');
 
 var Actions = Reflux.createActions(['setSearchInput', 'showGifs', 'hideOverlays']);
 
 module.exports = Actions;
 
-},{"reflux":180}],203:[function(require,module,exports){
+},{"reflux":180}],206:[function(require,module,exports){
 //Dependencies
 const Reflux = require('reflux');
 const GifsActions = require('./GifsActions.jsx');
@@ -23235,7 +23437,7 @@ let GifsStore = Reflux.createStore({
 
 module.exports = GifsStore;
 
-},{"./GifsActions.jsx":202,"reflux":180,"superagent":183}],204:[function(require,module,exports){
+},{"./GifsActions.jsx":205,"reflux":180,"superagent":183}],207:[function(require,module,exports){
 module.exports = {
   COLOR_RANGE: 255,
   beautifulGreys: ["#193441", "#2f4854", "#465c66", "#5e707a", "#75858d", "#8c99a0", "#a3adb3", "#bac2c6", "#d1d6d9", "#e8eaec", "#ffffff", "#ffffff"],
@@ -23271,4 +23473,4 @@ module.exports = {
   }
 };
 
-},{}]},{},[201]);
+},{}]},{},[204]);

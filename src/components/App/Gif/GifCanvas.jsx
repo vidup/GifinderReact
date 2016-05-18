@@ -19,7 +19,8 @@ let Gif = React.createClass({
       hovered : false,
       activeID : Math.random()*100,
       imageLoaded : false,
-      backgroundColor : Colors.randomBeautifulGrey()
+      backgroundColor : Colors.randomBeautifulGrey(),
+      loadingFailed : false
     }
   },
   onGifsChange : function(event, activeID){
@@ -31,8 +32,11 @@ let Gif = React.createClass({
     GifActions.hideOverlays(this.state.activeID);
     this.setState({hovered : true}) // Set the state to hovered
   },
-  handleImageLoaded() {
+  handleImageLoaded : function(){
     this.setState({ backgroundColor: "transparent" });
+  },
+  handleImageFailed : function(){
+    this.setState({ loadingFailed : true})
   },
   render : function(){
 
@@ -45,22 +49,36 @@ let Gif = React.createClass({
         return "hidden"
       }
     }
+
+    let generateImage = function(){
+      if(component.state.loadingFailed){
+        return (<h1>Error : image couldn't load. Sorry :'(</h1>)
+      }else{
+        return (
+          <img
+            onMouseEnter={component.onMouseEnter}
+            onMouseLeave={component.onMouseLeave}
+            onLoad={component.handleImageLoaded}
+            onError={component.handleImageFailed}
+            src={component.props.src}
+            className="gif"
+            style={backgroundStyle}
+          />
+        )
+      }
+    }
+
     let backgroundStyle = {
       backgroundColor : this.state.backgroundColor
     }
     return (
       <div style={{position : "relative", display : "block", float : "left", width : "100%"}}>
-          <img
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
-            onLoad={this.handleImageLoaded}
-            src={this.props.src}
-            className="gif"
-            style={backgroundStyle}
-          />
+        {generateImage()}
         <GifOverlay
           visibility={overlayStatus()}
           download ={this.props.download}
+          origin={this.props.origin}
+          giphy={this.props.giphy}
         />
       </div>
     );

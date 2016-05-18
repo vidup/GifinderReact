@@ -13,7 +13,7 @@ let Input = React.createClass({
   },
   render : function(){
     const InputStyle = {
-      width : "25%",
+      width : "300px",
       height : "50px",
       lineHeight : "50px",
       margin : "auto",

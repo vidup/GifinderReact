@@ -307,6 +307,17 @@ html, body {
   padding: 10px;
   background-color: #1BBC9B; }
 
+.header form {
+  background-color: #1BBC9B;
+  padding: 15px; }
+
+.header input {
+  text-align: center;
+  min-width: 250px;
+  height: 50px;
+  font-size: 1.3em;
+  margin: 5px auto; }
+
 .article #headerSubtitle {
   margin-top: 15px; }
 
@@ -318,13 +329,6 @@ html, body {
 .article p {
   text-align: justify;
   text-justify: inter-word; }
-
-.article input {
-  text-align: center;
-  min-width: 250px;
-  height: 50px;
-  font-size: 1.3em;
-  margin: 5px auto; }
 
 /* Gif Component */
 .gif {
@@ -343,4 +347,5 @@ html, body {
   margin: auto;
   float: left;
   background-color: #193441;
-  display: block; }
+  display: block;
+  padding-top: 5px; }

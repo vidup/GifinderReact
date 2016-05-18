@@ -32,6 +32,7 @@
     "express": "^4.13.4",
     "mongoose": "^4.4.17",
     "react": "^0.14.7",
+    "react-clipboard": "^1.2.1",
     "react-dom": "^0.14.7",
     "reflux": "^0.3.0",
     "superagent": "^1.8.3",

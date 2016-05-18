@@ -4,6 +4,7 @@ const React = require('react');
 //Sub-components
 let Title = require('./Title.jsx');
 let Subtitle = require('./Subtitle.jsx');
+const SearchForm = require('./SearchForm.jsx');
 
 //Component
 let Header = React.createClass({
@@ -17,6 +18,7 @@ let Header = React.createClass({
       <div style={headerStyle} className="header col-12">
         <Title content={this.props.title}/>
         <Subtitle content={this.props.subtitle}/>
+        <SearchForm/>
       </div>
     );
   }

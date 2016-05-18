@@ -2,6 +2,9 @@
 const React = require('react');
 
 //Sub-components
+const DownloadButton = require('./DownloadButton.jsx');
+const GiphyLinkButton = require('./GiphyLinkButton.jsx');
+const GetLinkButton = require('./GetLinkButton.jsx');
 
 //Component
 let GifOverlay = React.createClass({
@@ -18,7 +21,8 @@ let GifOverlay = React.createClass({
       visibility : this.props.visibility,
       margin : 0,
       backgroundColor : "rgba(0,0,0,0.4)",
-      zIndex : 2
+      zIndex : 2,
+      padding : "15px"
     }
 
     let linkStyle = {
@@ -27,16 +31,13 @@ let GifOverlay = React.createClass({
     }
     let textStyle = {
       margin : 0,
-      textAlign : "center",
-      top : 0,
-      marginTop : 50
-
+      textAlign : "center"
     }
     return (
       <div style={GifOverlayStyle}>
-        <a href={this.props.download} style={linkStyle}>
-          <h1 style={textStyle}>Direct Link</h1>
-        </a>
+        <DownloadButton link={this.props.download} style={{visibility : this.props.visibility}}/>
+        <GiphyLinkButton link={this.props.giphy} style={{visibility : this.props.visibility}}/>
+        <GetLinkButton link={this.props.origin} style={{visibility : this.props.visibility}}/>
       </div>
     );
   }

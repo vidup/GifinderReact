@@ -1,10 +1,10 @@
 //Dependencies
 const React = require('react');
-const GifsActions = require('../../../reflux/Gifs/GifsActions.jsx');
+const GifsActions = require('../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
-let Submit = require('./Buttons/Submit.jsx');
-let SearchInput = require('./Inputs/SearchInput.jsx');
+let Submit = require('../App/Forms/Buttons/Submit.jsx');
+let SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
 
 //Component
 let SearchForm = React.createClass({

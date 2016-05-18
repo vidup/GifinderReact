@@ -30,6 +30,8 @@ let GifList = React.createClass({
           <GifCanvas
             src={gif.images["fixed_height_small"].url}
             download={gif.images.original.url}
+            giphy={gif.bitly_url}
+            origin={gif.source_post_url}
             key={gif.images.original.url+index+Math.floor(Math.random()*1000)}>
           </GifCanvas>
       );
