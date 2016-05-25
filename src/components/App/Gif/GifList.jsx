@@ -9,7 +9,7 @@ const GifCanvas = require('./GifCanvas.jsx');
 const FlipMove = require('react-flip-move');
 
 //Component
-let GifList = React.createClass({
+var GifList = React.createClass({
   mixins : [
     Reflux.listenTo(GifsStore, "onGifsChange")
   ],
@@ -24,7 +24,7 @@ let GifList = React.createClass({
     }
   },
   render : function(){
-    let generateGif = function(gif, index){
+    var generateGif = function(gif, index){
       return (
 
           <GifCanvas

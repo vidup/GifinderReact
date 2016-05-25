@@ -40,9 +40,9 @@ const Gif = React.createClass({
   },
   render : function(){
 
-    let component = this;
+    var component = this;
 
-    let overlayStatus = function(){
+    var overlayStatus = function(){
       if(component.state.hovered){
         return "visible";
       }else{
@@ -50,7 +50,7 @@ const Gif = React.createClass({
       }
     }
 
-    let generateImage = function(){
+    var generateImage = function(){
       if(component.state.loadingFailed){
         return (<h1>Error : image couldn't load. Sorry :'(</h1>)
       }else{
@@ -68,7 +68,7 @@ const Gif = React.createClass({
       }
     }
 
-    let backgroundStyle = {
+    var backgroundStyle = {
       backgroundColor : this.state.backgroundColor
     }
     return (

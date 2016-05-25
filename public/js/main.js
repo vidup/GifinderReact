@@ -22873,7 +22873,7 @@ const DownloadButton = React.createClass({
       textDecoration: "none",
       margin: " 5px auto"
     };
-    let imgStyle = {
+    var imgStyle = {
       display: "block",
       margin: "0 auto",
       zIndex: 5,
@@ -22936,7 +22936,7 @@ const GetLinkButton = React.createClass({
       padding: "5px"
 
     };
-    let imgStyle = {
+    var imgStyle = {
       display: "block",
       margin: "0 auto",
       zIndex: 5,
@@ -23014,9 +23014,9 @@ const Gif = React.createClass({
   },
   render: function () {
 
-    let component = this;
+    var component = this;
 
-    let overlayStatus = function () {
+    var overlayStatus = function () {
       if (component.state.hovered) {
         return "visible";
       } else {
@@ -23024,7 +23024,7 @@ const Gif = React.createClass({
       }
     };
 
-    let generateImage = function () {
+    var generateImage = function () {
       if (component.state.loadingFailed) {
         return React.createElement(
           'h1',
@@ -23044,7 +23044,7 @@ const Gif = React.createClass({
       }
     };
 
-    let backgroundStyle = {
+    var backgroundStyle = {
       backgroundColor: this.state.backgroundColor
     };
     return React.createElement(
@@ -23075,7 +23075,7 @@ const GifCanvas = require('./GifCanvas.jsx');
 const FlipMove = require('react-flip-move');
 
 //Component
-let GifList = React.createClass({
+var GifList = React.createClass({
   displayName: 'GifList',
 
   mixins: [Reflux.listenTo(GifsStore, "onGifsChange")],
@@ -23090,7 +23090,7 @@ let GifList = React.createClass({
     }
   },
   render: function () {
-    let generateGif = function (gif, index) {
+    var generateGif = function (gif, index) {
       return React.createElement(GifCanvas, {
         src: gif.images["fixed_height_small"].url,
         download: gif.images.original.url,
@@ -23124,14 +23124,14 @@ const GiphyLinkButton = require('./GiphyLinkButton.jsx');
 const GetLinkButton = require('./GetLinkButton.jsx');
 
 //Component
-let GifOverlay = React.createClass({
+var GifOverlay = React.createClass({
   displayName: 'GifOverlay',
 
   getInitialState: function () {
     return { url: "" };
   },
   render: function () {
-    let GifOverlayStyle = {
+    var GifOverlayStyle = {
       width: "100%",
       height: "100%",
       position: "absolute",
@@ -23144,11 +23144,11 @@ let GifOverlay = React.createClass({
       padding: "15px"
     };
 
-    let linkStyle = {
+    var linkStyle = {
       textDecoration: "none",
       color: "#fff"
     };
-    let textStyle = {
+    var textStyle = {
       margin: 0,
       textAlign: "center"
     };
@@ -23171,7 +23171,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let GiphyLinkButton = React.createClass({
+var GiphyLinkButton = React.createClass({
   displayName: "GiphyLinkButton",
 
   getInitialState: function () {
@@ -23190,7 +23190,7 @@ let GiphyLinkButton = React.createClass({
       textDecoration: "none",
       margin: "5px auto"
     };
-    let imgStyle = {
+    var imgStyle = {
       display: "block",
       margin: "0 auto",
       zIndex: 5,
@@ -23232,11 +23232,11 @@ const React = require('react');
 //Sub-components
 
 //Component
-let Footer = React.createClass({
+var Footer = React.createClass({
   displayName: "Footer",
 
   render: function () {
-    let footerStyle = {
+    var footerStyle = {
       width: "100%",
       height: "200px",
       textAlign: "center"
@@ -23260,16 +23260,16 @@ module.exports = Footer;
 const React = require('react');
 
 //Sub-components
-let Title = require('./Title.jsx');
-let Subtitle = require('./Subtitle.jsx');
+var Title = require('./Title.jsx');
+var Subtitle = require('./Subtitle.jsx');
 const SearchForm = require('./SearchForm.jsx');
 
 //Component
-let Header = React.createClass({
+var Header = React.createClass({
   displayName: 'Header',
 
   render: function () {
-    let headerStyle = {
+    var headerStyle = {
       width: "100%",
       height: "auto",
       textAlign: "center"
@@ -23292,11 +23292,11 @@ const React = require('react');
 const GifsActions = require('../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
-let Submit = require('../App/Forms/Buttons/Submit.jsx');
-let SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
+var Submit = require('../App/Forms/Buttons/Submit.jsx');
+var SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
 
 //Component
-let SearchForm = React.createClass({
+var SearchForm = React.createClass({
   displayName: 'SearchForm',
 
   onSubmit: function (e) {
@@ -23324,7 +23324,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let Subtitle = React.createClass({
+var Subtitle = React.createClass({
   displayName: "Subtitle",
 
   render: function () {
@@ -23345,7 +23345,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let Title = React.createClass({
+var Title = React.createClass({
   displayName: "Title",
 
   render: function () {
@@ -23371,9 +23371,9 @@ const ReactDOM = require('react-dom');
 const GifsStore = require('./reflux/Gifs/GifsStore.jsx');
 
 //Components
-let Header = require('./components/Header/Header.jsx');
-let Footer = require('./components/Footer/Footer.jsx');
-let App = require('./components/App/App.jsx');
+var Header = require('./components/Header/Header.jsx');
+var Footer = require('./components/Footer/Footer.jsx');
+var App = require('./components/App/App.jsx');
 
 //Application Logic
 //Example :
@@ -23406,7 +23406,7 @@ const request = require('superagent');
 const GIPHY_API_BASE_URI = 'https://api.giphy.com/v1/gifs/search?q=';
 const GIPHY_API_KEY = '&limit=80&api_key=dc6zaTOxFJmzC';
 
-let GifsStore = Reflux.createStore({
+var GifsStore = Reflux.createStore({
   listenables: [GifsActions],
   init: function () {
     this.GIFS_ON_PAGE = 40; // Used in order to chose how many gifs on page you want to display
@@ -23415,7 +23415,7 @@ let GifsStore = Reflux.createStore({
     this.inputValue = inputValue;
   },
   showGifs: function () {
-    let store = this;
+    var store = this;
     if (store.inputValue.length >= 3) {
       // Following request fetches Gifs data from the GIPHY API, based on user input.
       request.get(GIPHY_API_BASE_URI + store.inputValue + GIPHY_API_KEY).end(function (err, res) {
@@ -23425,7 +23425,7 @@ let GifsStore = Reflux.createStore({
       });
     } else {
         console.log("Request too small");
-        let errorMessage = "Sorry, but you need to type at least 3 characters";
+        var errorMessage = "Sorry, but you need to type at least 3 characters";
         this.trigger('error', errorMessage);
       }
   },
@@ -23445,27 +23445,27 @@ module.exports = {
     return Math.floor(Math.random() * maxNumber);
   },
   randomColor: function () {
-    let r = this.randomNumber(this.COLOR_RANGE),
+    var r = this.randomNumber(this.COLOR_RANGE),
         g = this.randomNumber(this.COLOR_RANGE);
     b = this.randomNumber(this.COLOR_RANGE);
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   },
   randomTransparentColor: function (transparency) {
-    let r = this.randomNumber(this.COLOR_RANGE),
+    var r = this.randomNumber(this.COLOR_RANGE),
         g = this.randomNumber(this.COLOR_RANGE);
     b = this.randomNumber(this.COLOR_RANGE);
     return 'rgba(' + r + ',' + g + ',' + b + ',' + transparency + ')';
   },
   randomGrey: function () {
-    let hue = this.randomNumber(this.COLOR_RANGE);
+    var hue = this.randomNumber(this.COLOR_RANGE);
     return 'rgb(' + hue + ',' + hue + ',' + hue + ')';
   },
   randomTransparentGrey: function (transparency) {
-    let hue = this.randomNumber(this.COLOR_RANGE);
+    var hue = this.randomNumber(this.COLOR_RANGE);
     return 'rgba(' + hue + ',' + hue + ',' + hue + ',' + transparency + ')';
   },
   randomBeautifulGrey: function () {
-    let grey = this.beautifulGreys[Math.floor(Math.random() * this.beautifulGreys.length)];
+    var grey = this.beautifulGreys[Math.floor(Math.random() * this.beautifulGreys.length)];
     return grey;
   },
   randomColorIn: function (colorArray) {

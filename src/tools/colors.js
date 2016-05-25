@@ -18,27 +18,27 @@ module.exports = {
     return Math.floor(Math.random()*maxNumber);
   },
   randomColor : function(){
-    let r = this.randomNumber(this.COLOR_RANGE),
+    var r = this.randomNumber(this.COLOR_RANGE),
         g = this.randomNumber(this.COLOR_RANGE);
         b = this.randomNumber(this.COLOR_RANGE);
     return ('rgb('+r+','+g+','+b+')');
   },
   randomTransparentColor : function(transparency){
-    let r = this.randomNumber(this.COLOR_RANGE),
+    var r = this.randomNumber(this.COLOR_RANGE),
         g = this.randomNumber(this.COLOR_RANGE);
         b = this.randomNumber(this.COLOR_RANGE);
     return ('rgba('+r+','+g+','+b+','+transparency+')');
   },
   randomGrey : function(){
-    let hue = this.randomNumber(this.COLOR_RANGE);
+    var hue = this.randomNumber(this.COLOR_RANGE);
     return ('rgb('+hue+','+hue+','+hue+')');
   },
   randomTransparentGrey : function(transparency){
-    let hue = this.randomNumber(this.COLOR_RANGE);
+    var hue = this.randomNumber(this.COLOR_RANGE);
     return ('rgba('+hue+','+hue+','+hue+','+transparency+')');
   },
   randomBeautifulGrey : function(){
-    let grey = this.beautifulGreys[Math.floor(Math.random()*this.beautifulGreys.length)]
+    var grey = this.beautifulGreys[Math.floor(Math.random()*this.beautifulGreys.length)]
     return grey;
   },
   randomColorIn : function(colorArray){

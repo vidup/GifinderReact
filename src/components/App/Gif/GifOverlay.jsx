@@ -7,12 +7,12 @@ const GiphyLinkButton = require('./GiphyLinkButton.jsx');
 const GetLinkButton = require('./GetLinkButton.jsx');
 
 //Component
-let GifOverlay = React.createClass({
+var GifOverlay = React.createClass({
   getInitialState : function(){
     return { url : ""}
   },
   render : function(){
-    let GifOverlayStyle = {
+    var GifOverlayStyle = {
       width : "100%",
       height : "100%",
       position : "absolute",
@@ -25,11 +25,11 @@ let GifOverlay = React.createClass({
       padding : "15px"
     }
 
-    let linkStyle = {
+    var linkStyle = {
       textDecoration : "none",
       color : "#fff"
     }
-    let textStyle = {
+    var textStyle = {
       margin : 0,
       textAlign : "center"
     }

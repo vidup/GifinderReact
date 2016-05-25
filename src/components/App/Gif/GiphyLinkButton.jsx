@@ -4,7 +4,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let GiphyLinkButton = React.createClass({
+var GiphyLinkButton = React.createClass({
   getInitialState : function(){
     return {hover : false}
   },
@@ -21,7 +21,7 @@ let GiphyLinkButton = React.createClass({
       textDecoration : "none",
       margin : "5px auto"
     }
-    let imgStyle = {
+    var imgStyle = {
       display : "block",
       margin : "0 auto",
       zIndex : 5,

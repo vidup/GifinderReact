@@ -4,9 +4,9 @@ const React = require('react');
 //Sub-components
 
 //Component
-let Footer = React.createClass({
+var Footer = React.createClass({
   render : function(){
-    let footerStyle = {
+    var footerStyle = {
       width : "100%",
       height : "200px",
       textAlign : "center"

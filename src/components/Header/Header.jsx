@@ -2,14 +2,14 @@
 const React = require('react');
 
 //Sub-components
-let Title = require('./Title.jsx');
-let Subtitle = require('./Subtitle.jsx');
+var Title = require('./Title.jsx');
+var Subtitle = require('./Subtitle.jsx');
 const SearchForm = require('./SearchForm.jsx');
 
 //Component
-let Header = React.createClass({
+var Header = React.createClass({
   render : function(){
-    let headerStyle = {
+    var headerStyle = {
       width : "100%",
       height : "auto",
       textAlign : "center"

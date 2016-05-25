@@ -4,7 +4,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let Subtitle = React.createClass({
+var Subtitle = React.createClass({
   render : function(){
     return <h2 className="subtitle">{this.props.content}</h2>
   }

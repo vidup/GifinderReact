@@ -1,7 +1,7 @@
 ## React version of Gifinder App
 
-This app uses the Giphy API in order to find gifs according to the user input. It displays a grid of gifs, with overlays 
-allowing the user to get the Gif's direct link, the original Giphy link AND the origin of the GIF (Giphy indexes Gifs used on reddit, 
+This app uses the Giphy API in order to find gifs according to the user input. It displays a grid of gifs, with overlays
+allowing the user to get the Gif's direct link, the original Giphy link AND the origin of the GIF (Giphy indexes Gifs used on reddit,
 for example).
 You can try it there : http://gifinderreact.herokuapp.com/ (Takes a few seconds to start the first time, cause it's on a free Heroku account ^^).
 
@@ -22,4 +22,3 @@ In order to work on this application, use these commands:
 ```npm run start``` : You don't need to use this. I just put it there for Heroku.
 
 PS : You might want to add your src folder to your .gitignore file. I know some people prefer it this way.
-PPS : This version works on Chrome only. Will be fixed soon.

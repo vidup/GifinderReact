@@ -21,7 +21,7 @@ const DownloadButton = React.createClass({
       textDecoration : "none",
       margin : " 5px auto"
     }
-    let imgStyle = {
+    var imgStyle = {
       display : "block",
       margin : "0 auto",
       zIndex : 5,

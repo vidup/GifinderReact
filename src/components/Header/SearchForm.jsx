@@ -3,11 +3,11 @@ const React = require('react');
 const GifsActions = require('../../reflux/Gifs/GifsActions.jsx');
 
 //Sub-components
-let Submit = require('../App/Forms/Buttons/Submit.jsx');
-let SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
+var Submit = require('../App/Forms/Buttons/Submit.jsx');
+var SearchInput = require('../App/Forms/Inputs/SearchInput.jsx');
 
 //Component
-let SearchForm = React.createClass({
+var SearchForm = React.createClass({
   onSubmit : function(e){
     e.preventDefault();
     this.setState({value : e.target.value}, function(){

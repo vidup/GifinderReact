@@ -7,7 +7,7 @@ const request = require('superagent');
 const GIPHY_API_BASE_URI = 'https://api.giphy.com/v1/gifs/search?q=';
 const GIPHY_API_KEY = '&limit=80&api_key=dc6zaTOxFJmzC';
 
-let GifsStore = Reflux.createStore({
+var GifsStore = Reflux.createStore({
   listenables : [GifsActions],
   init : function(){
     this.GIFS_ON_PAGE = 40; // Used in order to chose how many gifs on page you want to display
@@ -16,7 +16,7 @@ let GifsStore = Reflux.createStore({
     this.inputValue = inputValue;
   },
   showGifs : function(){
-    let store = this;
+    var store = this;
     if(store.inputValue.length>=3){
       // Following request fetches Gifs data from the GIPHY API, based on user input.
       request.get(GIPHY_API_BASE_URI+store.inputValue+GIPHY_API_KEY).end(function(err, res){
@@ -26,7 +26,7 @@ let GifsStore = Reflux.createStore({
       });
     }else{
       console.log("Request too small");
-      let errorMessage = "Sorry, but you need to type at least 3 characters";
+      var errorMessage = "Sorry, but you need to type at least 3 characters";
       this.trigger('error', errorMessage);
     }
   },

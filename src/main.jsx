@@ -9,9 +9,9 @@ const ReactDOM = require('react-dom');
 const GifsStore = require('./reflux/Gifs/GifsStore.jsx');
 
 //Components
-let Header = require('./components/Header/Header.jsx');
-let Footer = require('./components/Footer/Footer.jsx');
-let App = require('./components/App/App.jsx');
+var Header = require('./components/Header/Header.jsx');
+var Footer = require('./components/Footer/Footer.jsx');
+var App = require('./components/App/App.jsx');
 
 //Application Logic
   //Example :

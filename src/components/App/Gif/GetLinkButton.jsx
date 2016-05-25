@@ -23,7 +23,7 @@ const GetLinkButton = React.createClass({
       padding : "5px"
 
     }
-    let imgStyle = {
+    var imgStyle = {
       display : "block",
       margin : "0 auto",
       zIndex : 5,
