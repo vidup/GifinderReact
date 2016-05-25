@@ -4,10 +4,10 @@ const Reflux = require('reflux');
 const GifsStore = require('../../reflux/Gifs/GifsStore.jsx');
 
 //Sub-components
-let GifList = require('./Gif/GifList.jsx');
+const GifList = require('./Gif/GifList.jsx');
 
 //Component
-let App = React.createClass({
+const App = React.createClass({
   mixins : [
     Reflux.listenTo(GifsStore, "onGifsChange")
   ],

@@ -6,10 +6,10 @@ const GifsStore = require('../../../reflux/Gifs/GifsStore.jsx');
 const Colors = require('../../../tools/colors');
 
 //Sub-components
-let GifOverlay = require('./GifOverlay.jsx');
+const GifOverlay = require('./GifOverlay.jsx');
 
 //Component
-let Gif = React.createClass({
+const Gif = React.createClass({
   mixins : [
     Reflux.listenTo(GifsStore, "onGifsChange")
   ],

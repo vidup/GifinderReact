@@ -4,7 +4,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let DownloadButton = React.createClass({
+const DownloadButton = React.createClass({
   getInitialState : function(){
     return {hover : false}
   },

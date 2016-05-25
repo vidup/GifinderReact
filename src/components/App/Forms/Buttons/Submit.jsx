@@ -5,7 +5,7 @@ const GifsActions = require('../../../../reflux/Gifs/GifsActions.jsx');
 //Sub-components
 
 //Component
-let Submit = React.createClass({
+const Submit = React.createClass({
   render : function(){
     const InputStyle = {
       width : "300px",

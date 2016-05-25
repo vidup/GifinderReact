@@ -4,7 +4,7 @@ const React = require('react');
 //Sub-components
 
 //Component
-let GetLinkButton = React.createClass({
+const GetLinkButton = React.createClass({
   getInitialState : function(){
     return {hover : false}
   },
