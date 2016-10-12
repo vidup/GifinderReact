@@ -3,7 +3,7 @@
 This app uses the Giphy API in order to find gifs according to the user input. It displays a grid of gifs, with overlays
 allowing the user to get the Gif's direct link, the original Giphy link AND the origin of the GIF (Giphy indexes Gifs used on reddit,
 for example).
-You can try it there : http://gifinderreact.herokuapp.com/ (Takes a few seconds to start the first time, cause it's on a free Heroku account ^^).
+You can try it there : http://gifinder-react.herokuapp.com/ (Takes a few seconds to start the first time, cause it's on a free Heroku account ^^).
 
 ```git clone https://github.com/helvanic/GifinderReact.git```
 
